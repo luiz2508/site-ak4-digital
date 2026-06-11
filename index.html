@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AK4 Digital - Internet fibra óptica de alta velocidade. Planos de 200, 400 e 800 Mega para sua casa ou empresa. Atendimento humanizado e instalação profissional.">
+  <meta name="keywords" content="internet fibra óptica, AK4 Digital, planos internet, internet rápida, Cujubizinho, Ramal do Estudante, internet residencial">
+  <meta name="author" content="AK4 Digital">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0A4BD9">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AK4 Digital - Internet Fibra Óptica de Alta Velocidade">
+  <meta property="og:description" content="Fibra óptica de alta velocidade para sua região. Planos de 200, 400 e 800 Mega com atendimento humanizado.">
+  <meta property="og:image" content="assects/hero-internet.png">
+  <meta property="og:url" content="https://ak4digital.com.br">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="AK4 Digital">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AK4 Digital - Internet Fibra Óptica">
+  <meta name="twitter:description" content="Fibra óptica de alta velocidade para sua região. Planos 200, 400 e 800 Mega.">
+  <meta name="twitter:image" content="assects/hero-internet.png">
+
+  <title>AK4 Digital - Internet Fibra Óptica de Alta Velocidade</title>
+
+  <link rel="canonical" href="https://ak4digital.com.br">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AK4 Digital",
+    "description": "Provedor de internet fibra óptica de alta velocidade com atendimento humanizado e instalação profissional.",
+    "url": "https://ak4digital.com.br",
+    "telephone": "+556992549013",
+    "email": "contato@ak4digital.com.br",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cujubizinho",
+      "addressCountry": "BR",
+      "addressRegion": "RO"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    "priceRange": "$$",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Planos de Internet",
+      "itemListElement": [
+        {"@type": "Offer", "name": "Plano 200 Mega"},
+        {"@type": "Offer", "name": "Plano 400 Mega"},
+        {"@type": "Offer", "name": "Plano 800 Mega"}
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Skip to main content (Acessibilidade) -->
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="header" id="header" role="banner">
+    <div class="header__container container">
+
+      <a href="#inicio" class="header__logo" aria-label="AK4 Digital - Ir para o início">
+        <img src="assects/Logo.png" alt="AK4 Digital" class="header__logo-img" width="200" height="64" loading="eager">
+      </a>
+
+      <button
+        class="header__menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menu de navegação"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span class="header__hamburger" aria-hidden="true"></span>
+        <span class="header__hamburger" aria-hidden="true"></span>
+        <span class="header__hamburger" aria-hidden="true"></span>
+      </button>
+
+      <nav class="header__nav" id="mainNav" role="navigation" aria-label="Menu principal">
+        <ul class="header__nav-list" role="list">
+          <li><a href="#inicio"    class="header__nav-link active" data-section="inicio">Início</a></li>
+          <li><a href="#planos"    class="header__nav-link"        data-section="planos">Planos</a></li>
+          <li><a href="#cobertura" class="header__nav-link"        data-section="cobertura">Cobertura</a></li>
+          <li><a href="#sobre"     class="header__nav-link"        data-section="sobre">Sobre</a></li>
+          <li><a href="#contato"   class="header__nav-link"        data-section="contato">Contato</a></li>
+        </ul>
+
+        <a
+          href="https://wa.me/5569992549013?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20os%20planos%20da%20AK4%20Digital."
+          class="btn btn--whatsapp header__btn-whatsapp"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Falar com a AK4 Digital no WhatsApp"
+        >
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          <span>WhatsApp</span>
+        </a>
+
+        <button class="header__theme-toggle" id="themeToggle" aria-label="Alternar modo escuro/claro" title="Alternar tema">
+          <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+  <!-- /HEADER -->
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO SECTION
+    ============================================================ -->
+    <section class="hero" id="inicio" aria-label="Apresentação AK4 Digital">
+
+      <div class="swiper hero__swiper" aria-roledescription="carrossel" aria-label="Slides da AK4 Digital">
+        <div class="swiper-wrapper">
+
+          <!-- Slide 1: Internet -->
+          <div class="swiper-slide hero__slide hero__slide--bottom" role="group" aria-roledescription="slide" aria-label="Slide 1 de 3: Internet de alta velocidade">
+            <div
+              class="hero__bg"
+              style="background-image: url('assects/hero-internet.png');"
+              role="img"
+              aria-label="Internet de alta velocidade"
+            ></div>
+            <div class="hero__content container">
+              <div class="hero__text">
+                <div class="hero__buttons">
+                  <a href="#planos" class="btn btn--primary btn--lg">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    Ver Planos
+                  </a>
+                  <a
+                    href="https://wa.me/5569992549013?text=Ol%C3%A1!%20Quero%20contratar%20um%20plano."
+                    class="btn btn--outline-white btn--lg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    Falar no WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Streaming -->
+          <div class="swiper-slide hero__slide hero__slide--bottom" role="group" aria-roledescription="slide" aria-label="Slide 2 de 3: Streaming sem travamentos">
+            <div
+              class="hero__bg"
+              style="background-image: url('assects/hero-streaming.png');"
+              role="img"
+              aria-label="Streaming sem travamentos"
+            ></div>
+            <div class="hero__content container">
+              <div class="hero__text">
+                <div class="hero__buttons">
+                  <a href="#planos" class="btn btn--primary btn--lg">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                    Assista Sem Travar
+                  </a>
+                  <a href="#cobertura" class="btn btn--outline-white btn--lg">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    Ver Cobertura
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Suporte -->
+          <div class="swiper-slide hero__slide hero__slide--bottom" role="group" aria-roledescription="slide" aria-label="Slide 3 de 3: Suporte humanizado">
+            <div
+              class="hero__bg"
+              style="background-image: url('assects/hero-suporte.png');"
+              role="img"
+              aria-label="Atendimento e suporte especializado"
+            ></div>
+            <div class="hero__content container">
+              <div class="hero__text">
+                <div class="hero__buttons">
+                  <a
+                    href="https://wa.me/5569992549013?text=Preciso%20de%20suporte%20t%C3%A9cnico."
+                    class="btn btn--primary btn--lg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fas fa-headset" aria-hidden="true"></i>
+                    Falar com Suporte
+                  </a>
+                  <a
+                    href="https://wa.me/5569992549013?text=Quero%20contratar%20agora!"
+                    class="btn btn--outline-white btn--lg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="fas fa-rocket" aria-hidden="true"></i>
+                    Contratar Agora
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /swiper-wrapper -->
+
+        <div class="swiper-pagination hero__pagination" aria-label="Navegação do slider"></div>
+        <button class="swiper-button-prev hero__btn-prev" aria-label="Slide anterior"></button>
+        <button class="swiper-button-next hero__btn-next" aria-label="Próximo slide"></button>
+      </div>
+
+      <div class="hero__scroll-indicator" aria-hidden="true">
+        <span class="hero__scroll-text">Role para baixo</span>
+        <div class="hero__scroll-line">
+          <div class="hero__scroll-dot"></div>
+        </div>
+      </div>
+
+    </section>
+    <!-- /HERO -->
+
+    <!-- ============================================================
+         PLANS SECTION
+    ============================================================ -->
+    <section class="plans section" id="planos" aria-labelledby="plans-heading">
+      <div class="container">
+
+        <header class="section-header reveal">
+          <span class="section-badge">Nossos Planos</span>
+          <h2 class="section-title" id="plans-heading">Escolha o Plano Ideal Para Você</h2>
+          <p class="section-subtitle">Internet estável para toda a família.</p>
+        </header>
+
+        <div class="plans__grid">
+
+          <!-- Plano 200 Mega -->
+          <article class="plan-card reveal" aria-label="Plano 200 Mega">
+            <div class="plan-card__glow" aria-hidden="true"></div>
+            <div class="plan-card__header">
+              <div class="plan-card__icon" aria-hidden="true">
+                <i class="fas fa-wifi"></i>
+              </div>
+              <div class="plan-card__speed">
+                <span class="plan-card__number">200</span>
+                <span class="plan-card__unit">Mega</span>
+              </div>
+            </div>
+            <ul class="plan-card__features" aria-label="Recursos inclusos no plano 200 Mega">
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Streaming HD</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Redes Sociais</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Navegação Rápida</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Wi-Fi Residencial</li>
+            </ul>
+            <a
+              href="https://wa.me/5569992549013?text=Quero%20verificar%20disponibilidade%20do%20plano%20200%20Mega."
+              class="btn btn--plan"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Verificar disponibilidade do plano 200 Mega no WhatsApp"
+            >
+              Ver Disponibilidade
+            </a>
+          </article>
+
+          <!-- Plano 400 Mega (Destaque) -->
+          <article class="plan-card plan-card--featured reveal" aria-label="Plano 400 Mega - Mais popular">
+            <div class="plan-card__badge" aria-label="Plano mais popular">
+              <i class="fas fa-star" aria-hidden="true"></i> Mais Popular
+            </div>
+            <div class="plan-card__glow" aria-hidden="true"></div>
+            <div class="plan-card__header">
+              <div class="plan-card__icon" aria-hidden="true">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <div class="plan-card__speed">
+                <span class="plan-card__number">400</span>
+                <span class="plan-card__unit">Mega</span>
+              </div>
+            </div>
+            <ul class="plan-card__features" aria-label="Recursos inclusos no plano 400 Mega">
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Streaming 4K</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Home Office</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Videochamadas</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Vários Dispositivos</li>
+            </ul>
+            <a
+              href="https://wa.me/5569992549013?text=Quero%20verificar%20disponibilidade%20do%20plano%20400%20Mega."
+              class="btn btn--plan btn--plan-featured"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Verificar disponibilidade do plano 400 Mega no WhatsApp"
+            >
+              Ver Disponibilidade
+            </a>
+          </article>
+
+          <!-- Plano 800 Mega -->
+          <article class="plan-card reveal" aria-label="Plano 800 Mega">
+            <div class="plan-card__glow" aria-hidden="true"></div>
+            <div class="plan-card__header">
+              <div class="plan-card__icon" aria-hidden="true">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <div class="plan-card__speed">
+                <span class="plan-card__number">800</span>
+                <span class="plan-card__unit">Mega</span>
+              </div>
+            </div>
+            <ul class="plan-card__features" aria-label="Recursos inclusos no plano 800 Mega">
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Máximo Desempenho</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Streaming 4K</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Jogos Online</li>
+              <li><i class="fas fa-check-circle" aria-hidden="true"></i> Muitos Dispositivos</li>
+            </ul>
+            <a
+              href="https://wa.me/5569992549013?text=Quero%20verificar%20disponibilidade%20do%20plano%20800%20Mega."
+              class="btn btn--plan"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Verificar disponibilidade do plano 800 Mega no WhatsApp"
+            >
+              Ver Disponibilidade
+            </a>
+          </article>
+
+        </div>
+
+        <p class="plans__note reveal">
+          <i class="fas fa-info-circle" aria-hidden="true"></i>
+          Verifique a disponibilidade em sua localidade.
+        </p>
+
+      </div>
+    </section>
+    <!-- /PLANS -->
+
+    <!-- ============================================================
+         DIFFERENTIALS SECTION
+    ============================================================ -->
+    <section class="differentials section section--alt" id="diferenciais" aria-labelledby="diff-heading">
+      <div class="container">
+
+        <header class="section-header reveal">
+          <span class="section-badge">Por Que Escolher a AK4</span>
+          <h2 class="section-title" id="diff-heading">Nossos Diferenciais</h2>
+          <p class="section-subtitle">Tecnologia e qualidade em cada conexão.</p>
+        </header>
+
+        <div class="differentials__grid">
+
+          <article class="diff-card reveal" aria-label="Diferencial: Fibra Óptica">
+            <div class="diff-card__icon-wrap" aria-hidden="true">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="diff-card__title">Fibra Óptica</h3>
+            <p class="diff-card__text">Conexão rápida e estável com a mais avançada tecnologia em telecomunicações.</p>
+          </article>
+
+          <article class="diff-card reveal" aria-label="Diferencial: Baixa Latência">
+            <div class="diff-card__icon-wrap" aria-hidden="true">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h3 class="diff-card__title">Baixa Latência</h3>
+            <p class="diff-card__text">Ideal para jogos e videoconferências com resposta instantânea e sem atrasos.</p>
+          </article>
+
+          <article class="diff-card reveal" aria-label="Diferencial: Atendimento Humanizado">
+            <div class="diff-card__icon-wrap" aria-hidden="true">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3 class="diff-card__title">Atendimento Humanizado</h3>
+            <p class="diff-card__text">Suporte rápido e eficiente com atendentes preparados para resolver seu problema.</p>
+          </article>
+
+          <article class="diff-card reveal" aria-label="Diferencial: Instalação Profissional">
+            <div class="diff-card__icon-wrap" aria-hidden="true">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3 class="diff-card__title">Instalação Profissional</h3>
+            <p class="diff-card__text">Equipe especializada garantindo a melhor configuração para sua residência ou empresa.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- /DIFFERENTIALS -->
+
+    <!-- ============================================================
+         STREAMING SECTION
+    ============================================================ -->
+    <section class="streaming section" id="streaming" aria-labelledby="streaming-heading">
+      <div class="container">
+        <div class="streaming__grid">
+
+          <div class="streaming__image reveal-left">
+            <div class="streaming__img-wrapper">
+              <img
+                src="assects/hero-streaming.png"
+                alt="Família assistindo streaming com internet AK4 Digital"
+                class="streaming__img"
+                loading="lazy"
+                width="600"
+                height="400"
+              >
+              <div class="streaming__img-glow" aria-hidden="true"></div>
+              <div class="streaming__img-badge" aria-hidden="true">
+                <i class="fas fa-play"></i> 4K Ultra HD
+              </div>
+            </div>
+          </div>
+
+          <div class="streaming__content reveal-right">
+            <span class="section-badge">Entretenimento</span>
+            <h2 class="section-title" id="streaming-heading">Streaming Sem Travamentos</h2>
+            <p class="streaming__text">
+              Aproveite filmes, séries, esportes e conteúdos online com estabilidade e velocidade.
+              Nossa fibra óptica garante a melhor experiência em todas as plataformas.
+            </p>
+
+            <div class="streaming__platforms" aria-label="Plataformas de streaming compatíveis">
+              <div class="streaming__platform" title="Netflix" aria-label="Netflix">
+                <span class="streaming__platform-name netflix">NETFLIX</span>
+              </div>
+              <div class="streaming__platform" title="Amazon Prime Video" aria-label="Amazon Prime Video">
+                <span class="streaming__platform-name prime">prime<br><small>video</small></span>
+              </div>
+              <div class="streaming__platform" title="Disney+" aria-label="Disney Plus">
+                <span class="streaming__platform-name disney">DISNEY<sup>+</sup></span>
+              </div>
+              <div class="streaming__platform" title="YouTube" aria-label="YouTube">
+                <i class="fab fa-youtube streaming__platform-yt" aria-hidden="true"></i>
+                <span class="streaming__platform-name youtube">YouTube</span>
+              </div>
+              <div class="streaming__platform" title="Max" aria-label="Max">
+                <span class="streaming__platform-name max">max</span>
+              </div>
+            </div>
+
+            <a
+              href="#planos"
+              class="btn btn--primary"
+            >
+              <i class="fas fa-bolt" aria-hidden="true"></i>
+              Ver Planos
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- /STREAMING -->
+
+    <!-- ============================================================
+         COVERAGE SECTION
+    ============================================================ -->
+    <section class="coverage section section--alt" id="cobertura" aria-labelledby="coverage-heading">
+      <div class="container">
+
+        <header class="section-header reveal">
+          <span class="section-badge">Área de Cobertura</span>
+          <h2 class="section-title" id="coverage-heading">Onde Estamos Presentes</h2>
+          <p class="section-subtitle">Levando internet de qualidade para toda a região.</p>
+        </header>
+
+        <div class="coverage__grid reveal" role="list" aria-label="Localidades com cobertura AK4 Digital">
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Cujubizinho</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Ramal do Estudante</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Ramal da Amizade</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Ramal Brasil</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Linha 28</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Ramal Santo Antônio Mucuim</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Riacho Azul</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>São Domingos</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>São Damião</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Vila DNIT</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>São João</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Novo Engenho Velho</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Vila Renascer</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Vila Franciscana</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Vila Bom Jesus</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Vila Veneza</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Santa Rita</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Ramal Jatuarana</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Primeiro de Maio</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Joana D'arc</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Linha 9 Joana D'arc</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Linha 7 Joana D'arc</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Linha 5 Joana D'arc</span></div>
+          <div class="coverage__item" role="listitem"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Linha 3 Joana D'arc</span></div>
+        </div>
+
+        <div class="coverage__cta reveal">
+          <a
+            href="https://wa.me/5569992549013?text=Quero%20verificar%20a%20disponibilidade%20na%20minha%20localidade."
+            class="btn btn--primary btn--lg"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Verificar disponibilidade de cobertura na sua localidade"
+          >
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            Verificar Disponibilidade
+          </a>
+        </div>
+
+      </div>
+    </section>
+    <!-- /COVERAGE -->
+
+    <!-- ============================================================
+         ABOUT SECTION
+    ============================================================ -->
+    <section class="about section" id="sobre" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about__grid">
+
+          <div class="about__content reveal-left">
+            <span class="section-badge">Sobre Nós</span>
+            <h2 class="section-title" id="about-heading">Conectando Pessoas com Qualidade</h2>
+            <p class="about__text">
+              A AK4 Digital nasceu para oferecer internet de qualidade, estabilidade e atendimento diferenciado.
+            </p>
+            <p class="about__text">
+              Nosso compromisso é conectar pessoas, empresas e famílias com tecnologia de ponta e suporte eficiente.
+            </p>
+
+            <div class="about__stats" aria-label="Números da empresa">
+              <div class="about__stat">
+                <span class="about__stat-number" data-target="24">0</span>
+                <span class="about__stat-symbol">+</span>
+                <span class="about__stat-label">Localidades Atendidas</span>
+              </div>
+              <div class="about__stat">
+                <span class="about__stat-number" data-target="800">0</span>
+                <span class="about__stat-symbol">M</span>
+                <span class="about__stat-label">Mega de Velocidade</span>
+              </div>
+              <div class="about__stat">
+                <span class="about__stat-number" data-target="100">0</span>
+                <span class="about__stat-symbol">%</span>
+                <span class="about__stat-label">Fibra Óptica</span>
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/5569992549013?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20a%20AK4%20Digital."
+              class="btn btn--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              Fale Conosco
+            </a>
+          </div>
+
+          <div class="about__image reveal-right">
+            <div class="about__img-wrapper">
+              <img
+                src="assects/hero-internet.png"
+                alt="Tecnologia e conectividade da AK4 Digital"
+                class="about__img"
+                loading="lazy"
+                width="600"
+                height="400"
+              >
+              <div class="about__img-decoration" aria-hidden="true"></div>
+              <div class="about__img-card" aria-hidden="true">
+                <i class="fas fa-shield-alt"></i>
+                <span>Conexão Garantida</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- /ABOUT -->
+
+    <!-- ============================================================
+         CTA FINAL
+    ============================================================ -->
+    <section class="cta" id="contato" aria-labelledby="cta-heading">
+      <div class="cta__particles" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <div class="container">
+        <div class="cta__content reveal">
+          <h2 class="cta__title" id="cta-heading">
+            Pronto para ter uma internet de qualidade?
+          </h2>
+          <p class="cta__text">
+            Entre em contato agora e descubra o melhor plano para sua região.
+          </p>
+          <div class="cta__buttons">
+            <a
+              href="https://wa.me/5569992549013?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20os%20planos%20da%20AK4%20Digital."
+              class="btn btn--whatsapp-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Entrar em contato pelo WhatsApp"
+            >
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              WhatsApp
+            </a>
+            <a
+              href="tel:+5569992549013"
+              class="btn btn--phone-cta"
+              aria-label="Ligar para (69) 99254-9013"
+            >
+              <i class="fas fa-phone-alt" aria-hidden="true"></i>
+              Ligar Agora
+            </a>
+          </div>
+          <p class="cta__phone">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            (69) 99254-9013
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- /CTA -->
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" id="rodape" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+          <a href="#inicio" class="footer__logo-link" aria-label="AK4 Digital - Ir para o início">
+            <img src="assects/Logo.png" alt="AK4 Digital" class="footer__logo" loading="lazy" width="130" height="44">
+          </a>
+          <p class="footer__brand-text">
+            Internet fibra óptica de alta velocidade para você e sua família. Qualidade, estabilidade e atendimento diferenciado.
+          </p>
+          <div class="footer__social" aria-label="Redes sociais da AK4 Digital">
+            <a
+              href="https://wa.me/5569992549013"
+              class="footer__social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp da AK4 Digital"
+            >
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer__nav" aria-label="Links rápidos">
+          <h3 class="footer__heading">Links Rápidos</h3>
+          <ul class="footer__nav-list" role="list">
+            <li><a href="#inicio"    class="footer__nav-link">Início</a></li>
+            <li><a href="#planos"    class="footer__nav-link">Planos</a></li>
+            <li><a href="#cobertura" class="footer__nav-link">Cobertura</a></li>
+            <li><a href="#sobre"     class="footer__nav-link">Sobre</a></li>
+            <li><a href="#contato"   class="footer__nav-link">Contato</a></li>
+          </ul>
+        </nav>
+
+        <address class="footer__contact" aria-label="Informações de contato da AK4 Digital">
+          <h3 class="footer__heading">Contato</h3>
+          <ul class="footer__contact-list" role="list">
+            <li>
+              <a href="tel:+5569992549013" class="footer__contact-link">
+                <i class="fas fa-phone" aria-hidden="true"></i>
+                (69) 99254-9013
+              </a>
+            </li>
+            <li>
+              <a href="mailto:contato@ak4digital.com.br" class="footer__contact-link">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                contato@ak4digital.com.br
+              </a>
+            </li>
+          </ul>
+        </address>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; 2026 AK4 Digital. Todos os direitos reservados.
+        </p>
+        <p class="footer__credit">
+          Feito com <i class="fas fa-heart" aria-hidden="true" style="color:#FF2DA6"></i> pela AK4 Digital
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+  <!-- WhatsApp Floating Button -->
+  <a
+    href="https://wa.me/5569992549013?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20AK4%20Digital."
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Falar com a AK4 Digital no WhatsApp"
+    title="Fale Conosco pelo WhatsApp"
+  >
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    <span class="whatsapp-float__tooltip" aria-hidden="true">Fale Conosco!</span>
+  </a>
+
+  <!-- Back to Top -->
+  <button
+    class="back-to-top"
+    id="backToTop"
+    aria-label="Voltar ao topo da página"
+    title="Voltar ao topo"
+    hidden
+  >
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
