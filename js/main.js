@@ -7,19 +7,25 @@
 'use strict';
 
 /* ─── SWIPER HERO ────────────────────────────────────────── */
+let heroSwiper = null;
+
 function initSwiper() {
   if (typeof Swiper === 'undefined') return;
 
-  new Swiper('.hero__swiper', {
+  heroSwiper = new Swiper('.hero__swiper', {
     loop: true,
-    speed: 500,
+    speed: 800,
     autoplay: {
       delay: 4500,
       disableOnInteraction: false,
-      pauseOnMouseEnter: true,
+      pauseOnMouseEnter: false,
+      waitForTransition: false,
     },
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
+    effect: 'creative',
+    creativeEffect: {
+      prev:  { opacity: 0, translate: [0, 0, -1] },
+      next:  { opacity: 0, translate: [0, 0, -1] },
+    },
     pagination: {
       el: '.hero__pagination',
       clickable: true,
@@ -33,6 +39,12 @@ function initSwiper() {
       nextSlideMessage: 'Próximo slide',
     },
     keyboard: { enabled: true },
+    on: {
+      autoplayStop: function (swiper) {
+        // Pequeno delay para deixar qualquer transição pendente terminar
+        setTimeout(() => swiper.autoplay.start(), 50);
+      },
+    },
   });
 }
 
@@ -337,8 +349,301 @@ function initCardGlowEffect() {
   });
 }
 
+/* ─── LOCATION SELECTOR ──────────────────────────────────── */
+
+const LOC_CITIES = [
+  { id: 'cujubizinho',       name: 'Cujubizinho',               state: 'RO', popular: true  },
+  { id: 'ramal-estudante',   name: 'Ramal do Estudante',        state: 'RO', popular: true  },
+  { id: 'ji-parana',         name: 'Ji-Paraná',                 state: 'RO', popular: true  },
+  { id: 'porto-velho',       name: 'Porto Velho',               state: 'RO', popular: false },
+  { id: 'ariquemes',         name: 'Ariquemes',                 state: 'RO', popular: false },
+  { id: 'cacoal',            name: 'Cacoal',                    state: 'RO', popular: false },
+  { id: 'vilhena',           name: 'Vilhena',                   state: 'RO', popular: false },
+  { id: 'rolim-de-moura',    name: 'Rolim de Moura',            state: 'RO', popular: false },
+  { id: 'jaru',              name: 'Jaru',                      state: 'RO', popular: false },
+  { id: 'ouro-preto',        name: 'Ouro Preto do Oeste',       state: 'RO', popular: false },
+  { id: 'espigao-oeste',     name: "Espigão d'Oeste",           state: 'RO', popular: false },
+  { id: 'pimenta-bueno',     name: 'Pimenta Bueno',             state: 'RO', popular: false },
+  { id: 'guajara-mirim',     name: 'Guajará-Mirim',             state: 'RO', popular: false },
+  { id: 'alta-floresta',     name: "Alta Floresta d'Oeste",     state: 'RO', popular: false },
+  { id: 'nova-mutum',        name: 'Nova Mutum Paraná',         state: 'RO', popular: false },
+  { id: 'pres-medici',       name: 'Presidente Médici',         state: 'RO', popular: false },
+  { id: 'cerejeiras',        name: 'Cerejeiras',                state: 'RO', popular: false },
+  { id: 'colorado-oeste',    name: 'Colorado do Oeste',         state: 'RO', popular: false },
+  { id: 'mirante-serra',     name: 'Mirante da Serra',          state: 'RO', popular: false },
+  { id: 'nova-uniao',        name: 'Nova União',                state: 'RO', popular: false },
+  { id: 'teixeiropolis',     name: 'Teixeirópolis',             state: 'RO', popular: false },
+  { id: 'vale-paraiso',      name: 'Vale do Paraíso',           state: 'RO', popular: false },
+  { id: 'alvorada',          name: "Alvorada d'Oeste",          state: 'RO', popular: false },
+  { id: 'machadinho',        name: "Machadinho d'Oeste",        state: 'RO', popular: false },
+  { id: 'novo-horizonte',    name: 'Novo Horizonte do Oeste',   state: 'RO', popular: false },
+  { id: 'urupa',             name: 'Urupá',                     state: 'RO', popular: false },
+];
+
+const LOC_STORAGE_KEY = 'ak4-selected-city';
+
+function initLocationSelector() {
+  const screen = document.getElementById('locScreen');
+  if (!screen) return;
+
+  // Update city count in panel
+  const countEl = document.getElementById('locCoverageNum');
+  if (countEl) countEl.textContent = LOC_CITIES.length;
+
+  // Skip screen only if the user already confirmed the city in THIS session
+  const savedId     = localStorage.getItem(LOC_STORAGE_KEY);
+  const sessionDone = sessionStorage.getItem(LOC_STORAGE_KEY + '-ok');
+  if (savedId && sessionDone) {
+    const saved = LOC_CITIES.find(c => c.id === savedId);
+    if (saved) {
+      screen.style.display = 'none';
+      locShowPlansNotice(saved);
+      return;
+    }
+    // Stored id is invalid — clear both
+    localStorage.removeItem(LOC_STORAGE_KEY);
+    sessionStorage.removeItem(LOC_STORAGE_KEY + '-ok');
+  }
+
+  // Pre-populate search with previously saved city (for convenience)
+  if (savedId) {
+    const preCity = LOC_CITIES.find(c => c.id === savedId);
+    if (preCity) {
+      // Defer until after DOM wiring
+      setTimeout(() => locSelectCity(preCity), 0);
+    }
+  }
+
+  // Lock scroll while selector is visible
+  document.body.style.overflow = 'hidden';
+
+  // Render popular chips
+  locRenderChips();
+
+  // Wire up search
+  locInitSearch(screen);
+
+  // Wire up continue button
+  const continueBtn = document.getElementById('locContinueBtn');
+  if (continueBtn) {
+    continueBtn.addEventListener('click', () => {
+      const cityId = continueBtn.dataset.selectedId;
+      if (!cityId) return;
+      const city = LOC_CITIES.find(c => c.id === cityId);
+      if (!city) return;
+      localStorage.setItem(LOC_STORAGE_KEY, city.id);
+      locExitScreen(screen, city);
+    });
+  }
+}
+
+/* Render popular city chips */
+function locRenderChips() {
+  const container = document.getElementById('locPopularChips');
+  if (!container) return;
+  const popular = LOC_CITIES.filter(c => c.popular);
+  popular.forEach((city, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'loc-chip';
+    btn.style.animationDelay = `${i * 0.07}s`;
+    btn.setAttribute('aria-label', `Selecionar ${city.name}`);
+    btn.innerHTML = `<i class="fas fa-location-dot loc-chip__icon" aria-hidden="true"></i>${locEscapeHtml(city.name)}`;
+    btn.addEventListener('click', () => locSelectCity(city));
+    container.appendChild(btn);
+  });
+}
+
+/* Wire up city select */
+function locInitSearch(screen) {
+  const input = document.getElementById('locSearchInput');
+  const changeBtn = document.getElementById('locChangeCity');
+  if (!input) return;
+
+  LOC_CITIES.forEach(city => {
+    const option = document.createElement('option');
+    option.value = city.id;
+    option.textContent = `${city.name}, ${city.state}`;
+    input.appendChild(option);
+  });
+
+  input.addEventListener('change', () => {
+    const city = LOC_CITIES.find(c => c.id === input.value);
+    if (city) {
+      locSelectCity(city);
+    } else {
+      locClearSelection();
+    }
+  });
+
+  if (changeBtn) {
+    changeBtn.addEventListener('click', () => {
+      locClearSelection();
+      input.focus();
+    });
+  }
+}
+
+/* Fuzzy city search with accent normalization */
+function locSearchCities(query) {
+  const q = locNormalize(query);
+  return LOC_CITIES.filter(c => locNormalize(c.name).includes(q));
+}
+
+function locNormalize(str) {
+  return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/* Render dropdown list */
+function locRenderDropdown(results, dropdown, input) {
+  dropdown.innerHTML = '';
+
+  if (!results.length) {
+    const li = document.createElement('li');
+    li.className = 'loc-dropdown__empty';
+    li.setAttribute('role', 'option');
+    li.innerHTML = `<i class="fas fa-magnifying-glass" aria-hidden="true"></i> Nenhuma cidade encontrada`;
+    dropdown.appendChild(li);
+  } else {
+    results.forEach(city => {
+      const li = document.createElement('li');
+      li.className = 'loc-dropdown__item';
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', 'false');
+      li.setAttribute('tabindex', '-1');
+      li.innerHTML = `
+        <span class="loc-dropdown__item-icon"><i class="fas fa-map-pin" aria-hidden="true"></i></span>
+        <span class="loc-dropdown__item-text">
+          <span class="loc-dropdown__item-name">${locEscapeHtml(city.name)}</span>
+          <span class="loc-dropdown__item-state">${locEscapeHtml(city.state)}</span>
+        </span>
+        ${city.popular ? '<span class="loc-chip loc-chip--mini">Popular</span>' : ''}
+      `;
+      li.addEventListener('click', () => locSelectCity(city));
+      dropdown.appendChild(li);
+    });
+  }
+
+  dropdown.hidden = false;
+  input.setAttribute('aria-expanded', 'true');
+}
+
+function locDropdownSetActive(items, idx) {
+  items.forEach((item, i) => {
+    item.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+    if (i === idx) item.scrollIntoView({ block: 'nearest' });
+  });
+}
+
+function locCloseDropdown(input, dropdown) {
+  dropdown.hidden = true;
+  input.setAttribute('aria-expanded', 'false');
+  dropdown.querySelectorAll('[aria-selected="true"]').forEach(i =>
+    i.setAttribute('aria-selected', 'false')
+  );
+}
+
+/* Select a city and update UI */
+function locSelectCity(city) {
+  const input = document.getElementById('locSearchInput');
+
+  if (input) input.value = city.id;
+
+  // Show selected display
+  const selectedDiv  = document.getElementById('locCitySelected');
+  const selectedName = document.getElementById('locCityName');
+  if (selectedDiv)  selectedDiv.hidden = false;
+  if (selectedName) selectedName.textContent = `${city.name}, ${city.state}`;
+
+  // Highlight matching chip
+  document.querySelectorAll('.loc-chip:not(.loc-chip--mini)').forEach(chip => {
+    chip.classList.toggle('loc-chip--active', chip.textContent.trim() === city.name);
+  });
+
+  // Enable continue button
+  const btn = document.getElementById('locContinueBtn');
+  if (btn) {
+    btn.disabled = false;
+    btn.dataset.selectedId = city.id;
+  }
+}
+
+/* Clear current selection */
+function locClearSelection() {
+  const selectedDiv = document.getElementById('locCitySelected');
+  if (selectedDiv) selectedDiv.hidden = true;
+  const input = document.getElementById('locSearchInput');
+  if (input) input.value = '';
+  document.querySelectorAll('.loc-chip:not(.loc-chip--mini)').forEach(c =>
+    c.classList.remove('loc-chip--active')
+  );
+  const btn = document.getElementById('locContinueBtn');
+  if (btn) {
+    btn.disabled = true;
+    delete btn.dataset.selectedId;
+  }
+}
+
+/* Animate screen out, then reveal main site */
+function locExitScreen(screen, city) {
+  sessionStorage.setItem(LOC_STORAGE_KEY + '-ok', '1');
+  screen.classList.add('loc-screen--exiting');
+  screen.addEventListener('animationend', () => {
+    screen.style.display = 'none';
+    document.body.style.overflow = '';
+    locShowPlansNotice(city);
+    // Reiniciar autoplay — Swiper pode ter pausado enquanto coberto pelo overlay
+    if (heroSwiper && heroSwiper.autoplay) {
+      heroSwiper.autoplay.start();
+    }
+  }, { once: true });
+}
+
+/* Inject city notice above plans grid */
+function locShowPlansNotice(city) {
+  const plansSection = document.getElementById('planos');
+  if (!plansSection) return;
+
+  // Remove existing notice
+  document.getElementById('locPlansNotice')?.remove();
+
+  const header = plansSection.querySelector('.section-header');
+  if (!header) return;
+
+  const notice = document.createElement('div');
+  notice.id = 'locPlansNotice';
+  notice.className = 'loc-plans-notice reveal';
+  notice.innerHTML = `
+    <i class="fas fa-location-dot" aria-hidden="true"></i>
+    Exibindo planos disponíveis para <strong>${locEscapeHtml(city.name)}, ${locEscapeHtml(city.state)}</strong>
+    <button class="loc-plans-notice__change" type="button" aria-label="Trocar cidade">
+      <i class="fas fa-pen-to-square" aria-hidden="true"></i> Trocar cidade
+    </button>
+  `;
+  header.after(notice);
+
+  notice.querySelector('.loc-plans-notice__change')?.addEventListener('click', () => {
+    localStorage.removeItem(LOC_STORAGE_KEY);
+    sessionStorage.removeItem(LOC_STORAGE_KEY + '-ok');
+    window.location.reload();
+  });
+
+  // Trigger reveal
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => notice.classList.add('visible'))
+  );
+}
+
+/* Safe HTML escape */
+function locEscapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
 /* ─── INIT ALL ───────────────────────────────────────────── */
 function init() {
+  initLocationSelector();
   initSwiper();
   initHeaderScroll();
   initMobileMenu();
