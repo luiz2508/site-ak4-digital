@@ -2916,3 +2916,157 @@ button {
   }
   .loc-logo img { height: 104px; }
 }
+
+/* Mobile and city selector refinements */
+.loc-screen {
+  overflow-y: auto;
+}
+.loc-layout {
+  min-height: 100dvh;
+}
+.loc-col--left {
+  align-items: center;
+  justify-content: center;
+}
+.loc-glass-panel {
+  color: #1F2937;
+}
+.loc-headline,
+.loc-city-selected__name,
+.loc-chip,
+.loc-search-box__input {
+  color: #1F2937 !important;
+}
+.loc-desc,
+.loc-city-selected__label,
+.loc-chips-section__label,
+.loc-coverage-count {
+  color: #5F6B7A !important;
+}
+.loc-search-box,
+.loc-search-box__input {
+  background: #FFFFFF !important;
+}
+.loc-search-box__input option {
+  background: #FFFFFF;
+  color: #1F2937;
+}
+.loc-search-box__input:invalid {
+  color: #5F6B7A !important;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+  .hero__swiper,
+  .hero__slide {
+    height: auto;
+    min-height: 100svh;
+  }
+  .hero__content {
+    height: auto;
+    min-height: 100svh;
+    padding: calc(var(--header-height) + 1rem) 1.25rem 5rem;
+  }
+  .hero__content--s1 {
+    align-items: center;
+    padding-top: calc(var(--header-height) + 1rem);
+    padding-bottom: 5rem;
+  }
+  .hero__slide--bottom .hero__content {
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 5rem;
+  }
+  .hero__text {
+    max-width: 100%;
+  }
+  .hero__badge {
+    font-size: 0.68rem;
+    line-height: 1.25;
+    white-space: normal;
+    max-width: 100%;
+  }
+  .hero__title {
+    font-size: clamp(1.75rem, 9vw, 2.65rem);
+    line-height: 1.12;
+    margin-bottom: 0.85rem;
+  }
+  .hero__subtitle {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+  .hero__plan-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .hero__plan-card {
+    min-width: 0;
+    padding: 0.75rem 0.45rem 0.6rem;
+    border-radius: 12px;
+  }
+  .hero__plan-card__speed {
+    font-size: 1.35rem;
+    gap: 0.12rem;
+  }
+  .hero__plan-card__speed small {
+    font-size: 0.55rem;
+  }
+  .hero__plan-card__label {
+    font-size: 0.58rem;
+  }
+  .hero__buttons {
+    gap: 0.75rem;
+  }
+  .hero__buttons .btn {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .loc-layout {
+    min-height: 100dvh;
+    padding: max(1.25rem, env(safe-area-inset-top)) 1rem max(1.25rem, env(safe-area-inset-bottom));
+  }
+  .loc-col--left {
+    width: min(100%, 520px);
+    min-height: calc(100dvh - 2.5rem);
+    display: flex;
+  }
+  .loc-glass-panel {
+    width: 100%;
+    margin: auto;
+    padding: 1.4rem;
+    border-radius: 18px;
+  }
+  .loc-headline {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+    line-height: 1.18;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .hero__title {
+    font-size: 1.62rem;
+  }
+  .hero__plan-card__speed {
+    font-size: 1.15rem;
+  }
+  .hero__plan-card__badge {
+    font-size: 0.5rem;
+    padding: 0.16rem 0.45rem;
+  }
+  .loc-glass-panel {
+    padding: 1.15rem;
+  }
+}
