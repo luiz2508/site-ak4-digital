@@ -23,8 +23,8 @@ function initSwiper() {
     },
     effect: 'creative',
     creativeEffect: {
-      prev:  { opacity: 0, translate: [0, 0, -1] },
-      next:  { opacity: 0, translate: [0, 0, -1] },
+      prev: { opacity: 0, translate: [0, 0, -1] },
+      next: { opacity: 0, translate: [0, 0, -1] },
     },
     pagination: {
       el: '.hero__pagination',
@@ -83,7 +83,7 @@ function initHeaderScroll() {
 /* ─── MOBILE MENU ────────────────────────────────────────── */
 function initMobileMenu() {
   const toggle = document.getElementById('menuToggle');
-  const nav    = document.getElementById('mainNav');
+  const nav = document.getElementById('mainNav');
   if (!toggle || !nav) return;
 
   // Create overlay
@@ -170,8 +170,8 @@ function initRevealAnimations() {
 
 /* ─── ACTIVE NAV LINK ON SCROLL ──────────────────────────── */
 function initActiveNavOnScroll() {
-  const sections  = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.header__nav-link[data-section]');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.header__nav-link[data-section]');
   if (!sections.length || !navLinks.length) return;
 
   const headerHeight = parseInt(
@@ -198,7 +198,7 @@ function initActiveNavOnScroll() {
 
 /* ─── DARK MODE ──────────────────────────────────────────── */
 function initDarkMode() {
-  const btn  = document.getElementById('themeToggle');
+  const btn = document.getElementById('themeToggle');
   const icon = document.getElementById('themeIcon');
   const html = document.documentElement;
   if (!btn) return;
@@ -219,7 +219,7 @@ function initDarkMode() {
   }
 
   // Load saved preference or system preference
-  const saved  = localStorage.getItem(STORAGE_KEY);
+  const saved = localStorage.getItem(STORAGE_KEY);
   const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   applyTheme(saved || system);
 
@@ -273,15 +273,15 @@ function initCounters() {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
 
-      const el     = entry.target;
+      const el = entry.target;
       const target = parseInt(el.getAttribute('data-target'), 10);
       const duration = 1800;
-      const start  = performance.now();
+      const start = performance.now();
 
       function update(now) {
-        const elapsed  = now - start;
+        const elapsed = now - start;
         const progress = Math.min(elapsed / duration, 1);
-        const eased    = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
         el.textContent = Math.round(eased * target);
 
         if (progress < 1) {
@@ -340,9 +340,9 @@ function initCardGlowEffect() {
   const cards = document.querySelectorAll('.plan-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', e => {
-      const rect  = card.getBoundingClientRect();
-      const x     = ((e.clientX - rect.left) / rect.width  * 100).toFixed(2);
-      const y     = ((e.clientY - rect.top)  / rect.height * 100).toFixed(2);
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(2);
+      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(2);
       card.style.setProperty('--mouse-x', `${x}%`);
       card.style.setProperty('--mouse-y', `${y}%`);
     });
@@ -352,32 +352,32 @@ function initCardGlowEffect() {
 /* ─── LOCATION SELECTOR ──────────────────────────────────── */
 
 const LOC_CITIES = [
-  { id: 'cujubizinho',       name: 'Cujubizinho',               state: 'RO', popular: true  },
-  { id: 'ramal-estudante',   name: 'Ramal do Estudante',        state: 'RO', popular: true  },
-  { id: 'ji-parana',         name: 'Ji-Paraná',                 state: 'RO', popular: true  },
-  { id: 'porto-velho',       name: 'Porto Velho',               state: 'RO', popular: false },
-  { id: 'ariquemes',         name: 'Ariquemes',                 state: 'RO', popular: false },
-  { id: 'cacoal',            name: 'Cacoal',                    state: 'RO', popular: false },
-  { id: 'vilhena',           name: 'Vilhena',                   state: 'RO', popular: false },
-  { id: 'rolim-de-moura',    name: 'Rolim de Moura',            state: 'RO', popular: false },
-  { id: 'jaru',              name: 'Jaru',                      state: 'RO', popular: false },
-  { id: 'ouro-preto',        name: 'Ouro Preto do Oeste',       state: 'RO', popular: false },
-  { id: 'espigao-oeste',     name: "Espigão d'Oeste",           state: 'RO', popular: false },
-  { id: 'pimenta-bueno',     name: 'Pimenta Bueno',             state: 'RO', popular: false },
-  { id: 'guajara-mirim',     name: 'Guajará-Mirim',             state: 'RO', popular: false },
-  { id: 'alta-floresta',     name: "Alta Floresta d'Oeste",     state: 'RO', popular: false },
-  { id: 'nova-mutum',        name: 'Nova Mutum Paraná',         state: 'RO', popular: false },
-  { id: 'pres-medici',       name: 'Presidente Médici',         state: 'RO', popular: false },
-  { id: 'cerejeiras',        name: 'Cerejeiras',                state: 'RO', popular: false },
-  { id: 'colorado-oeste',    name: 'Colorado do Oeste',         state: 'RO', popular: false },
-  { id: 'mirante-serra',     name: 'Mirante da Serra',          state: 'RO', popular: false },
-  { id: 'nova-uniao',        name: 'Nova União',                state: 'RO', popular: false },
-  { id: 'teixeiropolis',     name: 'Teixeirópolis',             state: 'RO', popular: false },
-  { id: 'vale-paraiso',      name: 'Vale do Paraíso',           state: 'RO', popular: false },
-  { id: 'alvorada',          name: "Alvorada d'Oeste",          state: 'RO', popular: false },
-  { id: 'machadinho',        name: "Machadinho d'Oeste",        state: 'RO', popular: false },
-  { id: 'novo-horizonte',    name: 'Novo Horizonte do Oeste',   state: 'RO', popular: false },
-  { id: 'urupa',             name: 'Urupá',                     state: 'RO', popular: false },
+  { id: 'cujubizinho', name: 'Cujubizinho', state: 'RO', popular: true },
+  { id: 'ramal-estudante', name: 'Ramal do Estudante', popular: true },
+  { id: 'ramal-da-amizade', name: 'Ramal da Amizade', popular: true },
+  { id: 'ramal-brasil', name: 'Ramal Brasil', popular: false },
+  { id: 'linha-28', name: 'Linha 28', popular: false },
+  { id: 'ramal-santo-antonio-mucuim', name: 'Ramal Santo Antônio Mucuim', popular: false },
+  { id: 'riacho-azul', name: 'Riacho Azul', popular: false },
+  { id: 'sao-domingo', name: 'São Domingo', popular: false },
+  { id: 'sao-damiao', name: 'São Damião', popular: false },
+  { id: 'vila-dnit', name: 'Vila Dnit', popular: false },
+  { id: 'sao-joao', name: 'São João', popular: false },
+  { id: 'novo-engenho-velho', name: 'Novo Engenho Velho', popular: false },
+  { id: 'vila-renascer', name: 'Vila Renascer', popular: false },
+  { id: 'riacho-azul', name: 'Riacho Azul', popular: false },
+  { id: 'vila-franciscana', name: 'Vila Franciscana', popular: false },
+  { id: 'vila-bom-jesus', name: 'Vila Bom Jesus', popular: false },
+  { id: 'vila-veneza', name: 'Vila Veneza', popular: false },
+  { id: 'santa-rita', name: 'Santa Rita', popular: false },
+  { id: 'ramal-jatuarana', name: 'Ramal Jatuarana', popular: false },
+  { id: 'primeiro-de-maio', name: 'Primeiro de Maio', popular: false },
+  { id: 'joana-darc', name: 'Joana D’arc', popular: false },
+  { id: 'linha-9-joana-darc', name: 'Linha 9 Joana D’arc', popular: false },
+  { id: 'linha-7-joana-darc', name: 'Linha 7 Joana D’arc', popular: false },
+  { id: 'linha-5-joana-darc', name: 'Linha 5 Joana D’arc', popular: false },
+  { id: 'linha-3-joana-darc', name: 'Linha 3 Joana D’arc', popular: false },
+  
 ];
 
 const LOC_STORAGE_KEY = 'ak4-selected-city';
@@ -391,7 +391,7 @@ function initLocationSelector() {
   if (countEl) countEl.textContent = LOC_CITIES.length;
 
   // Skip screen only if the user already confirmed the city in THIS session
-  const savedId     = localStorage.getItem(LOC_STORAGE_KEY);
+  const savedId = localStorage.getItem(LOC_STORAGE_KEY);
   const sessionDone = sessionStorage.getItem(LOC_STORAGE_KEY + '-ok');
   if (savedId && sessionDone) {
     const saved = LOC_CITIES.find(c => c.id === savedId);
@@ -550,9 +550,9 @@ function locSelectCity(city) {
   if (input) input.value = city.id;
 
   // Show selected display
-  const selectedDiv  = document.getElementById('locCitySelected');
+  const selectedDiv = document.getElementById('locCitySelected');
   const selectedName = document.getElementById('locCityName');
-  if (selectedDiv)  selectedDiv.hidden = false;
+  if (selectedDiv) selectedDiv.hidden = false;
   if (selectedName) selectedName.textContent = `${city.name}, ${city.state}`;
 
   // Highlight matching chip
