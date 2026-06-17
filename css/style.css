@@ -3195,3 +3195,42 @@ button {
     z-index: 1000;
   }
 }
+
+/* Final mobile hero centering and menu layering fixes */
+@media (max-width: 768px) {
+  .header {
+    z-index: 1100;
+  }
+  .header__menu-toggle {
+    z-index: 1103;
+  }
+  .header__nav {
+    z-index: 1102;
+  }
+  .header__nav-overlay {
+    z-index: 1090;
+  }
+  .hero__content,
+  .hero__content--s1 {
+    justify-content: center;
+    align-items: center;
+    padding-top: var(--header-height);
+    padding-bottom: 1.25rem;
+  }
+  .hero__text {
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero__plan-cards,
+  .hero__buttons {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

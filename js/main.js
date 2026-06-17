@@ -352,7 +352,7 @@ function initCardGlowEffect() {
 /* ─── LOCATION SELECTOR ──────────────────────────────────── */
 
 const LOC_CITIES = [
-  { id: 'cujubizinho', name: 'Cujubizinho', state: 'RO', popular: true },
+  { id: 'cujubizinho', name: 'Cujubizinho', popular: true },
   { id: 'ramal-estudante', name: 'Ramal do Estudante', popular: true },
   { id: 'ramal-da-amizade', name: 'Ramal da Amizade', popular: true },
   { id: 'ramal-brasil', name: 'Ramal Brasil', popular: false },
@@ -386,10 +386,6 @@ function initLocationSelector() {
   const screen = document.getElementById('locScreen');
   if (!screen) return;
 
-  // Update city count in panel
-  const countEl = document.getElementById('locCoverageNum');
-  if (countEl) countEl.textContent = LOC_CITIES.length;
-
   // Skip screen only if the user already confirmed the city in THIS session
   const savedId = localStorage.getItem(LOC_STORAGE_KEY);
   const sessionDone = sessionStorage.getItem(LOC_STORAGE_KEY + '-ok');
@@ -417,9 +413,6 @@ function initLocationSelector() {
   // Lock scroll while selector is visible
   document.body.style.overflow = 'hidden';
 
-  // Render popular chips
-  locRenderChips();
-
   // Wire up search
   locInitSearch(screen);
 
@@ -437,23 +430,6 @@ function initLocationSelector() {
   }
 }
 
-/* Render popular city chips */
-function locRenderChips() {
-  const container = document.getElementById('locPopularChips');
-  if (!container) return;
-  const popular = LOC_CITIES.filter(c => c.popular);
-  popular.forEach((city, i) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'loc-chip';
-    btn.style.animationDelay = `${i * 0.07}s`;
-    btn.setAttribute('aria-label', `Selecionar ${city.name}`);
-    btn.innerHTML = `<i class="fas fa-location-dot loc-chip__icon" aria-hidden="true"></i>${locEscapeHtml(city.name)}`;
-    btn.addEventListener('click', () => locSelectCity(city));
-    container.appendChild(btn);
-  });
-}
-
 /* Wire up city select */
 function locInitSearch(screen) {
   const input = document.getElementById('locSearchInput');
@@ -463,7 +439,7 @@ function locInitSearch(screen) {
   LOC_CITIES.forEach(city => {
     const option = document.createElement('option');
     option.value = city.id;
-    option.textContent = `${city.name}, ${city.state}`;
+    option.textContent = locCityLabel(city);
     input.appendChild(option);
   });
 
@@ -515,7 +491,6 @@ function locRenderDropdown(results, dropdown, input) {
         <span class="loc-dropdown__item-icon"><i class="fas fa-map-pin" aria-hidden="true"></i></span>
         <span class="loc-dropdown__item-text">
           <span class="loc-dropdown__item-name">${locEscapeHtml(city.name)}</span>
-          <span class="loc-dropdown__item-state">${locEscapeHtml(city.state)}</span>
         </span>
         ${city.popular ? '<span class="loc-chip loc-chip--mini">Popular</span>' : ''}
       `;
@@ -553,7 +528,7 @@ function locSelectCity(city) {
   const selectedDiv = document.getElementById('locCitySelected');
   const selectedName = document.getElementById('locCityName');
   if (selectedDiv) selectedDiv.hidden = false;
-  if (selectedName) selectedName.textContent = `${city.name}, ${city.state}`;
+  if (selectedName) selectedName.textContent = locCityLabel(city);
 
   // Highlight matching chip
   document.querySelectorAll('.loc-chip:not(.loc-chip--mini)').forEach(chip => {
@@ -615,7 +590,7 @@ function locShowPlansNotice(city) {
   notice.className = 'loc-plans-notice reveal';
   notice.innerHTML = `
     <i class="fas fa-location-dot" aria-hidden="true"></i>
-    Exibindo planos disponíveis para <strong>${locEscapeHtml(city.name)}, ${locEscapeHtml(city.state)}</strong>
+    Exibindo planos disponíveis para <strong>${locEscapeHtml(locCityLabel(city))}</strong>
     <button class="loc-plans-notice__change" type="button" aria-label="Trocar cidade">
       <i class="fas fa-pen-to-square" aria-hidden="true"></i> Trocar cidade
     </button>
@@ -639,6 +614,10 @@ function locEscapeHtml(str) {
   const d = document.createElement('div');
   d.textContent = str;
   return d.innerHTML;
+}
+
+function locCityLabel(city) {
+  return city.name;
 }
 
 /* ─── INIT ALL ───────────────────────────────────────────── */
